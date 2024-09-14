@@ -3,7 +3,7 @@ import os
 dev = 'cdc-wdm0'
 iface = 'wwan0'
 
-os.popen('mbim-network /dev/%s start' % dev)
+os.system('mbim-network /dev/%s start' % dev)
 res = os.popen('mbimcli -d /dev/%s -p --query-ip-configuration' % dev).read().splitlines()
 
 nameservers = []
@@ -25,8 +25,8 @@ print('gw_addr= %s' % gw_addr)
 print('nameservers= %s' % nameservers)
 print('mtu= %s' % mtu)
 
-os.popen('ifconfig %s up %s mtu %s' % (iface, ip_addr, mtu))
-os.popen('route add default gw %s %s' % (gw_addr, iface))
+os.system('ifconfig %s up %s mtu %s' % (iface, ip_addr, mtu))
+os.system('route add default gw %s %s' % (gw_addr, iface))
 
 with open('/etc/resolv.conf', 'w') as f:
     content = ['nameserver '+ns+'\n' for ns in nameservers]
