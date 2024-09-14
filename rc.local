@@ -1,0 +1,6 @@
+#! /bin/bash
+
+/usr/bin/python3 /opt/lte_set_ip_helper.py
+iptables-restore /etc/iptables.rules
+
+exit 0
