@@ -3,7 +3,7 @@ Set of helper scripts to use SBPC + LTE dongle as mobile hotspot
 
 # install
 ```
-sudo apt install net-tools hostapd dnsmasq libmbim-utils
+sudo apt install iptables hostapd dnsmasq libmbim-utils net-tools
 
 sudo cp lte_set_ip_helper.py /opt/lte_set_ip_helper.py
 sudo cp mbim-network.conf /etc/mbim-network.conf
