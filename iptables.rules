@@ -1,14 +1,10 @@
 *filter
-:INPUT ACCEPT [0:0]
-:FORWARD ACCEPT [0:0]
-:OUTPUT ACCEPT [0:0]
-#-A FORWARD -i wlan0 -j ACCEPT
--A FORWARD -i end0 -j ACCEPT
-COMMIT
-*nat
-:PREROUTING ACCEPT [0:0]
-:INPUT ACCEPT [0:0]
-:OUTPUT ACCEPT [0:0]
-:POSTROUTING ACCEPT [0:0]
--A POSTROUTING -o wwan0 -j MASQUERADE
+:INPUT DROP [279:9177]
+:FORWARD DROP [0:0]
+:OUTPUT ACCEPT [225:19606]
+-A INPUT -i lo -j ACCEPT
+-A INPUT -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
+-A INPUT -i eth0 -p tcp -m tcp --dport 22 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+-A INPUT -i eth0 -p udp -m udp --dport 67 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+-A FORWARD -i eth0 -j ACCEPT
 COMMIT
